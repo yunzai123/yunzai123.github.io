@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    canvas{
+        border: 1px solid #000000;
+        position: absolute;
+        left:0;
+        top:50px;
+        bottom:0;
+        right:0;
+        margin:auto;
+    }
+</style>
+<body>
+    
+    <canvas width="600" height="600"></canvas>
+</body>
+</html>
+<script>
+    let canvas=document.querySelector('canvas');
+    let ctx=canvas.getContext('2d');
+    let flag=true;
+    let drops={};
+    drawLine();
+    canvas.onclick=function(e) {
+        let ox = Math.floor(e.offsetX / 40),
+            oy = Math.floor(e.offsetY / 40);
+        if (drops[m(ox, oy)]) {
+            return;
+        }
+        if (flag) {
+            console.log(check(ox, oy, '#000000'));
+            if (check(ox, oy, '#000000') == 5) {
+                alert('红红赢了');
+                canvas.onclick = null;
+            }
+            drawCircle(ox, oy, '#000000');
+        } else {
+            if (check(ox, oy, 'pink') == 5) {
+                alert('choufu赢了');
+                canvas.onclick = null;
+
+            }
+            drawCircle(ox, oy, 'pink')
+        }
+    };
+
+        function drawLine() {
+            ctx.clearRect(0, 0, 600, 600);
+            ctx.save();
+            ctx.beginPath();
+            for (let i = 0; i < 15; i++) {
+                ctx.moveTo(line(0), line(i));
+                ctx.lineTo(line(14), line(i));
+                ctx.moveTo(line(i), line(0));
+                ctx.lineTo(line(i), line(14));
+                ctx.closePath();
+                ctx.stroke();
+                circle(line(7), line(7));
+                circle(line(2), line(2));
+                circle(line(12), line(2));
+                circle(line(12), line(12));
+                circle(line(2), line(12));
+            }
+        }
+
+        function line(x) {
+            return 40 * x + 20;
+        }
+
+        function circle(x, y) {
+            ctx.save();
+            ctx.translate(x, y);
+            ctx.fillStyle = 'red';
+            ctx.beginPath();
+            ctx.arc(0, 0, 10, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.restore();
+        }
+
+        function drawCircle(x, y, color) {
+            ctx.save();
+            ctx.translate(line(x), line(y));
+            ctx.fillStyle = color;
+            ctx.beginPath();
+            ctx.arc(0, 0, 20, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.restore();
+            flag = !flag;
+            drops[m(x, y)] = color;
+        }
+
+        function m(x, y) {
+            return `${x}_${y}`
+        }
+
+        function check(x, y, color) {
+            let row = 1;
+            let i = 1;
+            while (drops[m(x + i, y)] == color) {
+                row++;
+                i++;
+            }
+            i = 1;
+            while (drops[m(x - i, y)] == color) {
+                row++;
+                i++;
+            }
+            let cols = 1;
+            while (drops[m(x, y + i)] == color) {
+                cols++;
+                i++;
+            }
+            i = 1;
+            while (drops[m(x, y - i)] == color) {
+                cols++;
+                i++;
+            }
+            let zx = 1;
+            while (drops[m(x + i, y + i)] == color) {
+                zx++;
+                i++;
+            }
+            i = 1;
+            while (drops[m(x - i, y - i)] == color) {
+                zx++;
+                i++;
+            }
+            let yx = 1;
+            while (drops[m(x - i, y + i)] == color) {
+                yx++;
+                i++;
+            }
+            i = 1;
+            while (drops[m(x + i, y - i)] == color) {
+                yx++;
+                i++;
+            }
+            return Math.max(row, cols, zx, yx);
+        }
+
+
+
+</script>

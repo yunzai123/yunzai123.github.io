@@ -1,0 +1,100 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+ 
+  .ming{
+    font-size: 40px;
+    color: red;
+  }
+  .fen{
+    font-size: 40px;
+    color: red;
+  }
+</style>
+<body>
+	<div class="box">生命值<span class="ming">10</span></div>
+  <div class="box1">得分<span class="fen">0</span></div>
+</body>
+</html>
+<script>
+
+		function Game(){
+		this.charArr=['Q','W','G','R','H','U','I','R','Y','E','A','S','D','F','M','N','B','X','Z','X','C'];
+		this.charlength=5;
+		this.currentArr=[];
+	  this.speed=10;
+    let ming=10
+    let fen=0;
+		}
+		Game.prototype={
+          createElements:function(){
+            for(let i=0;i<this.charlength;i++){
+            	this.getchar();
+            }
+          },
+          getchar:function(){
+          	let num=Math.floor(Math.random()*this.charArr.length);
+          	let ele=document.createElement('div');
+          	ele.innerText=this.charArr[num];
+          	let lefts=(window.innerWidth-200)*Math.random()+100;
+          	console.log(lefts)
+          	let tops=Math.random()*100;
+          	ele.style.cssText=`width:100px;height:100px;background:green;border-radius:3px;color:black;font-size:60px;position:absolute;left:${lefts}px;top:${tops}px;padding:5px;text-algin:center;`
+          	document.body.appendChild(ele);
+          	this.currentArr.push(ele);
+          },
+          drop:function(){
+          	let self=this;
+          	
+          		self.t=setInterval(function(){
+          			for(let i=0;i<self.currentArr.length;i++){
+          			let tops=self.currentArr[i].offsetTop+self.speed;
+          			console.log(self.speed)
+          			self.currentArr[i].style.top=tops+'px';
+          			if(tops>500){
+          				document.body.removeChild(self.currentArr[i]);
+          				self.currentArr.splice(i,1);
+          			}
+
+          			}
+          		if(self.currentArr.length<self.charlength){
+                 self.getchar();
+                 
+          	     }
+          		},500)
+          	
+          
+          },
+          key:function(){
+            document.body.onkeydown=function(e){
+              let code=String.fromCharCode(e.keyCode);
+              
+              for(let i=0;i<this.currentArr.length;i++){
+                 if(code==this.currentArr[i].innerText){
+                  document.body.removeChild(this.currentArr[i]);
+                  this.currentArr.splice(i,1);
+                 ++fen;
+                 }
+              }
+              if(this.currentArr.lebgth<this.charlength){
+                this.getchar();
+              }
+            }.bind(this);
+          }
+
+		}
+		Game.prototype.start=function(){
+
+          this.createElements();
+          this.drop();
+          this.key();
+		}
+	let game=new Game();
+	game.start();
+
+</script>

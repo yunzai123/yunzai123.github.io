@@ -1,0 +1,124 @@
+*{
+    padding: 0;
+    margin:0;
+    list-style: none;
+}
+.desk{
+    width: 1000px;
+    height: 700px;
+    background:green;
+    margin:0 auto;
+    position: relative;
+}
+.tan{
+    width: 200px;
+    height: 150px;
+    background: rgba(0,0,0,0.7);
+    position: absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    margin:auto;
+    z-index: 99;
+    border-radius: 3px;
+    overflow: hidden;
+}
+button{
+    display: block;
+    background: deepskyblue;
+   width: 70px;
+    height: 40px;
+    margin-left: 65px;
+    margin-top: 23px;
+    border:none;
+    border-radius: 3px;
+}
+.box{
+    width: 400px;
+    height: 170px;
+    position: absolute;
+    left:0;
+    right:0;
+    bottom:10px;
+    margin:auto;
+    background: palegoldenrod;
+    border-radius: 5px;
+    display: none;
+}
+.leftbox{
+    width: 100px;
+    height: 130px;
+    position: absolute;
+    top:20px;
+    left:50px;
+    background: peachpuff;
+    box-sizing: border-box;
+    border:1px solid blue;
+}
+.rightbox{
+    width: 100px;
+    height: 130px;
+    position: absolute;
+    top:20px;
+    right:50px;
+    background: peachpuff;
+    box-sizing: border-box;
+    border:1px solid blue;
+}
+.left{
+     width: 60px;
+     height: 35px;
+     position: absolute;
+     top:40px;
+     right:0px;
+     left:0;
+     margin: auto;
+     background: orange;
+     box-sizing: border-box;
+     border:none;
+     outline: none;
+     border-radius: 3px;
+    font-family: '宋体';
+    color: #ffffff;
+    font-size: 30px;
+ }
+.right{
+    width: 60px;
+    height: 35px;
+    position: absolute;
+    top:85px;
+    right:0px;
+    left:0;
+    margin: auto;
+    background: orange;
+    box-sizing: border-box;
+    border:none;
+    outline: none;
+    border-radius: 3px;
+    font-family: '宋体';
+    color: #ffffff;
+    font-size: 30px;
+}
+.zuo{
+
+}
+.poke{
+    width: 100px;
+    height: 130px;
+    position: absolute;
+    top:0;
+    left:500px;
+    margin:auto;
+    background: peachpuff;
+    opacity: 0;
+    box-sizing: border-box;
+    background-size: cover;
+    background-position: center;
+    border-radius: 3px;
+    overflow: hidden;
+    border:2px solid #ffffff;
+}
+.active{
+    /*border: 1px solid #015FD7;*/
+}

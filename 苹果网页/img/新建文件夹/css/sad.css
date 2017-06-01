@@ -1,0 +1,99 @@
+
+*{
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+
+
+
+
+nav{
+	width: 100%;
+	height: 44px;
+	background: black;
+}
+
+
+
+
+.navbox{
+	width: 1000px;
+	height: 100%;
+	margin: 0px auto;
+	background: orange;
+}
+
+.navbox .con li{
+	display: inline-block;
+}
+.navbox .con{
+	text-align: justify;
+}
+.navbox .con:after{
+	content: "";
+	display: inline-block;
+	width: 100%；
+}
+
+
+
+.nabox .con:after{
+	display: inline-block;
+	width: 100%;
+	content: "";
+
+}
+
+
+.navbox li{
+	display: inline-block;
+	line-height: 44px;
+
+}
+.navbox li a{
+	color: #fff;
+}
+
+
+.navbox ul:nth-child(2){
+	width: 100%;
+	height: 100%;
+	display: none;
+}
+.navbox ul:nth-child(2) li{
+	width: 33.33%;
+	height: 100%;
+	text-align: center;
+}
+@media screen and (max-width: 1060px){
+	.navbox{
+		width: 100%;
+		height: 44px;
+		box-sizing: border-box;
+		padding: 0px 15px;
+	}
+
+.navbox ul:nth-child(2){
+	
+	display: none;
+}
+
+}
+@media screen and (max-width: 750px){
+	.navbox ul:nth-child(2){
+	
+	display: block;
+}
+.navbox ul:nth-child(2){
+	width: 100%;
+}
+.navbox ul:nth-child(2),li:nth-child(1){
+	text-align: left;
+}
+
+	.navbox ul:nth-child(1){
+	
+	display: none;
+}
+}
